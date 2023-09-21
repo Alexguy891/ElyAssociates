@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <script defer src="./script.js"></script>
     <!--Font for Close Button-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script async src="https://kit.fontawesome.com/6cc05e1e8e.js" crossorigin="anonymous"></script>
@@ -102,10 +101,9 @@
             text-align: center;
         }
 
-        /* .container > img:hover {
-            width: max-content;
-            height: max-content;
-        } */
+         /* img:hover {
+            cursor: pointer;
+        }  */
 
         .modal {
             width: 100%;
@@ -138,6 +136,36 @@
 
         .closeBtn:hover {
             color: rgb(255, 255, 255);
+        }
+
+        .text {
+            background-color: transparent; 
+            color: white;
+            font-size: 16px;
+            padding: 10px 10px;
+            text-align: top;
+        }
+        .cover {
+            transition: .5s ease;
+            opacity: 0;
+            position: absolute; 
+            top: 90%;
+            left: 85%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%); 
+        }
+
+        .container:hover {
+            cursor: pointer;
+        }
+
+
+        .container:hover .img {
+            opacity: .5;
+        }
+
+        .container:hover .cover {
+            opacity: 1;
         }
 
         @keyframes zoom {
@@ -182,23 +210,68 @@
                     <!--PHOTOS-->
                         <div class = "container">
                             <img src = "media/images/projects/test1.jpg">
+                            <div class = "cover">
+                                <div class = "text"> Click Image to Enlarge </div>
+                            </div>
                         </div>
                         <div class = "container">
                             <img src = "media/images/projects/test2.jpg">
+                            <div class = "cover">
+                                <div class = "text"> Click Image to Enlarge </div>
+                            </div>
                         </div>
                     </div>
                     <div class = "column">
                         <div class = "container">
                             <img src = "media/images/projects/test3.jpg">
+                            <div class = "cover">
+                                <div class = "text"> Click Image to Enlarge </div>
+                            </div>
                         </div>
                         <div class = "container">
                             <img src = "media/images/projects/test4.jpg">
+                            <div class = "cover">
+                                <div class = "text"> Click Image to Enlarge </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
+
+        <script>
+        
+        const images = document.querySelectorAll(".container img");
+        let imgSrc;
+        // get images src onclick
+        images.forEach((img) => {
+            img.addEventListener("click", (e) => {
+                imgSrc = e.target.src;
+                console.log(imgSrc)
+                imgModal(imgSrc);
+            });
+        });
+    
+        let imgModal = (src) => {
+            const modal = document.createElement("div");
+            modal.setAttribute("class", "modal");
+            //add modal to the parent element 
+            document.querySelector(".columnMain").append(modal);
+            //adding image to modal
+            const newImage = document.createElement("img");
+            newImage.setAttribute("src", src);
+            //creating the close button
+            const closeBtn = document.createElement("i");
+            closeBtn.setAttribute("class", "fas fa-times closeBtn");
+            //close function
+            closeBtn.onclick = () => {
+                modal.remove();
+            };
+    
+        modal.append(newImage, closeBtn);
+        }
+        </script>
 
     </body>
 
