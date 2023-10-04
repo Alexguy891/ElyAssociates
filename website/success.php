@@ -7,12 +7,28 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #e6ffe6;  /* Light green background */
+            color: #006400;  /* Dark Green Text */
             text-align: center;
-            padding: 50px;
         }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
         button {
-            padding: 10px 15px;
-            margin: 10px;
+            background-color: #006400;  /* Dark green */
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
             cursor: pointer;
         }
     </style>
