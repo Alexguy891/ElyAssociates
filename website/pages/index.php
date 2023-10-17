@@ -1,36 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Home</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <style>
-        .carousel-indicators {
-            display: none;
-        }
-
-        .carousel-inner {
-            height: 0;
-            padding-bottom: 45%;
-        }
-
-        .carousel-item {
-            position: absolute !important;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-        }
-
-        .carousel-item img {
-            height: 100%;
-            object-fit: cover;
-        }
-    </style>  
+<?php require 'support/head.php'; ?>
+<title>Home</title>
 </head>
 <body>
+    <?php require 'support/header.php'; ?>
     <div id='home-carousel' class='carousel slide' data-bs-ride='carousel'>
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -46,7 +20,7 @@
                 foreach ($images as $index => $image) {
                     $activeClass = ($index == 0) ? 'active' : '';
                     echo "<div class='carousel-item $activeClass'>";
-                    echo "<img src='website/media/images/$image' class='d-block w-100'>";
+                    echo "<img src='../media/images/$image' class='d-block w-100'>";
                     echo "</div>";
                 }
             ?>
@@ -74,5 +48,6 @@
             </p>
         </div>
     </div>
+    <?php require 'support/footer.php'; ?>
 </body>
 </html>
