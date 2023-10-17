@@ -52,13 +52,94 @@
         background-color: #7B8C6C;
     }
     
-    .container img {
+    /* .container img {
         transition: transform 0.3s;
+    } */
+
+   /* .container a:hover img, .enlarge:hover { */
+    /*    transform: scale(1.05); /* Increase the scale to slightly zoom in */ 
+   /*     filter: brightness(80%); /* Decrease brightness to darken the image */
+  /*  } */
+
+    /* Starting for text on hover */
+    
+    .image {
+        position: relative;
     }
 
-    .container a:hover img, .enlarge:hover {
-        transform: scale(1.05); /* Increase the scale to slightly zoom in */
+    .text {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
+        background-color: #7B8C6C;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        opacity: 0;
+        transition: 0.6s;
+        color: white;
+    }
+
+    .text:hover {
+        cursor: pointer;
+        opacity: .9;
+    } 
+
+    .text p {
+        font-family: "Alegreya SC";
+        font-size: 30px;
+    }
+
+    /* Ending for text on hover */
+
+    /* Start project-details page styling */
+
+     .container__details img {
+        transition: transform 0.3s;
+    } 
+
+    .container__details a:hover img, .enlarge:hover { 
+        transform: scale(1.05); /* Increase the scale to slightly zoom in */ 
         filter: brightness(80%); /* Decrease brightness to darken the image */
-    }   
+    } 
+
+    .modal { /* For bigger image */
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #7B8C6C;
+        opacity: 1;
+        margin-top: -1px;
+        animation: zoom 0.3s ease-in-out;
+    }
+
+    .modal img {
+        width: 50%;
+        object-fit: cover;
+    }
+
+    .closeBtn {
+        color: rgba(255, 255, 255, 0.87);
+        font-size: 25px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 20px;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+    }
+
+    .closeBtn:hover {
+        color: rgb(255, 255, 255);
+    }
+
+    /* End project-details page styling */
 
 </style>
