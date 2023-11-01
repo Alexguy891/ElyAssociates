@@ -14,7 +14,7 @@
                     <p>Project Description Here. This project was completed on some date at some location. This project cost approximately some amount of money and took some specific amount of time to complete. This project was completed by some people. This project was completed for some client.</p>
                 </div>
                 <div class="col-lg-6">
-                    <div class="container">
+                    <div class="container__details">
                         <a href="#">
                             <img src="../media/images/projects/test1.jpg" alt="Project Image" class="img-fluid">
                         </a>
@@ -28,21 +28,21 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class="container">
+                                    <div class="container__details">
                                         <a href="#">
                                             <img src="../media/images/projects/test1.jpg" alt="Project Image" class="img-fluid">
                                         </a>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="container">
+                                    <div class="container__details">
                                         <a href="#">
                                             <img src="../media/images/projects/test2.jpg" alt="Project Image" class="img-fluid">
                                         </a>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="container">
+                                    <div class="container__details">
                                         <a href="#">
                                             <img src="../media/images/projects/test3.jpg" alt="Project Image" class="img-fluid">
                                         </a>
@@ -57,7 +57,7 @@
         </div>
     </div>
         <script>
-        const images = document.querySelectorAll(".container img");
+        const images = document.querySelectorAll(".container__details img");
         let imgSrc;
         // get images src onclick
         images.forEach((img) => {

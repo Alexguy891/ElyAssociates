@@ -13,22 +13,31 @@
                 <tr>
                     <td class="col-sm-4">
                         <div class="container">
-                            <a href="project-details.php">
-                            <img src="../media/images/projects/test1.jpg" class="img-fluid">
+                            <a href = "project-details.php">
+                                <div class = "image">
+                                        <img src="../media/images/projects/test1.jpg" class="img-fluid">
+                                    <div class = "text"> <p> Testing Image 1 </p> </div>
+                                </div>
                             </a>
                         </div>
                     </td>
                     <td class="col-sm-4">
                         <div class="container">
                             <a href="project-details.php">
-                            <img src="../media/images/projects/test2.jpg" class="img-fluid">
+                                <div class = "image">
+                                    <img src="../media/images/projects/test2.jpg" class="img-fluid">
+                                    <div class = "text"> <p> Testing Image 2 </p> </div>
+                                </div>
                             </a>
                         </div>
                     </td>
                     <td class="col-sm-4">
                         <div class="container">
                             <a href="project-details.php">
-                            <img src="../media/images/projects/test3.jpg" class="img-fluid">
+                            <div class = "image">
+                                <img src="../media/images/projects/test3.jpg" class="img-fluid">
+                                <div class = "text"> <p> Testing Image 3 </p> </div>
+                            </div>
                             </a>
                         </div>
                     </td>
