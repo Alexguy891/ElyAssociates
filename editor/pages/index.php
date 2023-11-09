@@ -37,10 +37,12 @@
         </a>
     </div>
     <div id='home-text' class='container mt-4'>
-        <h1 id='mottos' class='fs-1'><?php echo getTextFromId(0)[0]['text_field']; ?></h1>
+        <h1 id='mottos' class='fs-1'><div id='0' class='editable'><?php echo getTextFromId(0)[0]['text_field']; ?></div></h1>
         <div id='home-description'>
-            <p class='fs-5'>
-                <?php echo getTextFromId(1)[0]['text_field']; ?>
+            <p class='fs-5'">
+                <div id='1' class='editable'>
+                    <?php echo getTextFromId(1)[0]['text_field']; ?>
+                </div>
             </p>
         </div>
     </div>

@@ -1,3 +1,10 @@
+<div class="editor-bar">
+    <h2 class="editor-title">Editor</h2>
+    <div class="editor-buttons">
+        <button class="reset-button" onclick="location.reload();">Reset</button>
+        <button class="save-button" onclick="saveChanges();">Save Changes</button>
+    </div>
+</div>
 <header class="header sticky-top">
     <nav id="navbar" class="navbar navbar-expand-xl navbar-dark">
         <a class="navbar-brand mr-auto" href="index.php" style="font-family:'Alegreya SC'">Ely & Associates</a>
