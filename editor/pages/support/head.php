@@ -6,10 +6,97 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="scripts/contact_us.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         (function(){
             emailjs.init("yaZw2HEajFpg_RM2O");
         })();
+    </script>
+    <script>
+        document.addEventListener('click', function(event) {
+            if (event.target && event.target.classList.contains('editable')) {
+                // Check if the element is already in editing mode
+                if (event.target.getAttribute('contenteditable') !== 'true') {
+                    makeEditable(event.target);
+                }
+            }
+        });
+
+        function makeEditable(element) {
+            const originalId = element.id;
+            const originalClass = element.className;
+
+            // Create a contentEditable element to make the text editable
+            const editableElement = document.createElement('div');
+            editableElement.contentEditable = true;
+            editableElement.innerHTML = element.textContent;
+
+            // Replace the clicked element with the editable element
+            element.parentNode.replaceChild(editableElement, element);
+            
+            // Restore the ID and class to the editable element
+            editableElement.id = originalId;
+            editableElement.className = originalClass;
+
+            // Add a click event listener to save changes
+            editableElement.addEventListener('blur', function() {
+                // Update the original element with the edited content
+                element.textContent = editableElement.innerHTML;
+                
+                // Make the original element clickable again
+                element.setAttribute('onclick', 'makeEditable(this);');
+            });
+            
+            // Remove the click event from the editable element
+            editableElement.removeAttribute('onclick');
+            
+            // Focus on the editable element
+            editableElement.focus();
+        }
+
+        function saveChanges() {
+            const confirmation = window.confirm("Warning! Are you sure you want to save changes? Once saved, changes cannot be reverted.");
+
+            if (!confirmation) {
+                return;
+            }
+
+            modifiedData = [];
+
+            var editableElements = document.querySelectorAll('.editable');
+            editableElements.forEach(function(element) {
+                var data = {};
+
+                if (element.tagName === 'DIV') {
+                    // Handle editable <div> elements (text)
+                    data.type = 'text'; // Set the type to 'text'
+                    data.id = element.id;
+                    data.content = element.textContent;
+                } else if (element.tagName === 'IMG' && element.classList.contains('editable')) {
+                    // Handle editable <img> elements (images)
+                    data.type = 'image'; // Set the type to 'image'
+                    data.id = element.id;
+                    data.src = element.src;
+                }
+
+                modifiedData.push(data);
+            });
+
+            console.log(modifiedData);
+
+            // Send both arrays to the server using Ajax
+            $.ajax({
+                type: 'POST',
+                url: 'support/config.php',
+                data: JSON.stringify(modifiedData),
+                contentType: 'application/json',
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        }
+
+
     </script>
     <link href='https://fonts.googleapis.com/css?family=Alegreya SC' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">

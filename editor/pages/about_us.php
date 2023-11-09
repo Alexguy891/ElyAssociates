@@ -7,11 +7,15 @@
     <?php require 'support/header.php'; ?>
     <div id='about-us-text' class='container mt-4'>
         <h1 class='fs-1'>
-            <?php echo getTextFromId(2)[0]['text_field']; ?>
+            <div id='2' class='editable'>
+                <?php echo getTextFromId(2)[0]['text_field']; ?>
+            </div>
         </h1>
         <div id='about-us-description'>
             <p class='fs-5'>
-                <?php echo getTextFromId(3)[0]['text_field']; ?>    
+                <div id='3' class='editable'>
+                    <?php echo getTextFromId(3)[0]['text_field']; ?>    
+                </div>
             </p>
         </div>
         <div class="row mt-4">
@@ -20,16 +24,24 @@
             </div>
             <div class="col-md-8">
                 <h1 class='fs-2'>
-                    <?php echo getTextFromId(4)[0]['text_field']; ?>
+                    <div id='4' class='editable'>
+                        <?php echo getTextFromId(4)[0]['text_field']; ?>
+                    </div>
                 </h1>
                 <p class="fs-5">
-                    <?php echo getTextFromId(5)[0]['text_field']; ?>
+                    <div id='5' class='editable'>
+                        <?php echo getTextFromId(5)[0]['text_field']; ?>
+                    </div>
                 </p>
                 <h1 class='fs-3'>
-                    <?php echo getTextFromId(6)[0]['text_field']; ?>
+                    <div id='6' class='editable'>
+                        <?php echo getTextFromId(6)[0]['text_field']; ?>
+                    </div>
                 </h1>
                 <p class="fs-5">
-                    <?php echo getTextFromId(7)[0]['text_field']; ?>    
+                    <div id='7' class='editable'>
+                        <?php echo getTextFromId(7)[0]['text_field']; ?> 
+                    </div>   
                 </p>
             </div>
         </div>

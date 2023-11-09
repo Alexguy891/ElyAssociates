@@ -14,6 +14,35 @@ catch(PDOException $error) {
     echo "Connection failed";
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    foreach ($data as $item) {
+        $id = $item['id'];
+        $type = $item['type'];
+
+        if ($type === "text") {
+            $content = $item['content'];
+            saveText($content, $id);
+        } elseif ($type === "image") {
+            $src = $item['src'];
+            saveImage($src, $id);
+        }
+    }
+}
+
+function saveText(string $text, int $id) {
+    $sql = "UPDATE website_text SET text_field = :text WHERE text_id = :id";
+    $stmt = $GLOBALS['pdo']->prepare($sql);
+    $stmt->execute(['text' => $text, 'id' => $id]);
+}
+
+function saveImage(string $path, int $id) {
+    $sql = "UPDATE photo SET file_path = :path WHERE photo_id = :id";
+    $stmt = $GLOBALS['pdo']->prepare($sql);
+    $stmt->execute(['path' => $path, 'id' => $id]);
+}
+
 function getTextFromId(int $id) {
     $sql = "SELECT text_field FROM website_text WHERE text_id = :id";
     $stmt = $GLOBALS['pdo']->prepare($sql);
