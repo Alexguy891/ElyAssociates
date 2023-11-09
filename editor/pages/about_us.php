@@ -18,7 +18,7 @@
                 </div>
             </p>
         </div>
-        <div class="row mt-4">
+        <div class="row m-4">
             <div class="col-md-3">
                 <img src="<?php echo getPhotoFromName("headshot")[0]['file_path']?>" class="img-fluid">
             </div>
@@ -42,48 +42,6 @@
                     <div id='7' class='editable'>
                         <?php echo getTextFromId(7)[0]['text_field']; ?> 
                     </div>   
-                </p>
-            </div>
-        </div>
-        <div class='row mt-4'>
-            <h1 class='fs-1'>
-                Awards & Certifications
-            </h1>
-            <div class="col-md-2">
-                <img src="../media/images/award.jpg" class="img-fluid">
-            </div>
-            <div class="col-md-8">
-                <h1 class='fs-2'>
-                    Award 1
-                </h1>
-                <p class="fs-5">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-            </div>
-        </div>
-        <div class='row mt-4'>
-            <div class="col-md-2">
-                <img src="../media/images/award.jpg" class="img-fluid">
-            </div>
-            <div class="col-md-8">
-                <h1 class='fs-2'>
-                    Award 2
-                </h1>
-                <p class="fs-5">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-            </div>
-        </div>
-        <div class='row mt-4'>
-            <div class="col-md-2">
-                <img src="../media/images/award.jpg" class="img-fluid">
-            </div>
-            <div class="col-md-8">
-                <h1 class='fs-2'>
-                    Award 3
-                </h1>
-                <p class="fs-5">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
             </div>
         </div>
