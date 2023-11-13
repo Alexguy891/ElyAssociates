@@ -36,6 +36,7 @@ CREATE TABLE project_photos (
     project_photo_id INT NOT NULL,
     photo_id INT,
     project_id INT,
+    project_photo_order INT,
     PRIMARY KEY (project_photo_id),
     FOREIGN KEY(photo_id) REFERENCES photo(photo_id),
     FOREIGN KEY(project_id) REFERENCES projects(project_id)
