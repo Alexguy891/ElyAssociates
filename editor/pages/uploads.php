@@ -36,25 +36,51 @@ if (isset($_POST['submit'])) {
                 $result = $stmt->fetchAll();
                 // New photo id
                 $photo_id = $result[0][0] + 1;
+
+                $found_in_web = false;
+                $found_in_editor = false;
             
                 $file_name_new = "carousel".$photo_id.".".$file_actual_ext;
                 $file_destination = realpath("../../") . "/website/media/images/" . $file_name_new;
-                move_uploaded_file($file_tmp_name, $file_destination);
+                if (move_uploaded_file($file_tmp_name, $file_destination)) {
+                    echo "success";
+                    $found_in_web = true; // flag for web side
+                } 
+                
+                else {
+                    echo "Failed adding to website folder";
+                }
 
                 // Copy file to editor folder so it is visible
                 $editors_copy_path = realpath("../"). "/media/images/" . $file_name_new;
-                copy($file_destination, $editors_copy_path);
-
-                $file_path_sql = "../media/images/".$file_name_new;
-                $file_name_sql = "carousel".$photo_id;
                 
-                // Update DB for getCarouselPhotos() to work
-                $sql = "INSERT INTO photo (photo_id, photo_name, file_path, page_id, photo_date) VALUES ('$photo_id', '$file_name_sql', '$file_path_sql', 'index', 'today')";
-                $stmt = $GLOBALS['pdo']->prepare($sql);
-                $stmt->execute();
+                if (copy($file_destination, $editors_copy_path)) {
+                    echo "success";
+                    $found_in_editor = true; // flag for editor side
+                } 
+                
+                else {
+                    echo "Failed adding to editor folder";
+                }
 
-                // Success message
-                header("Location: edit_carousel_photos.php?uploadsuccess");
+                // Check for our copies
+                if ($found_in_web && $found_in_editor) {
+
+                    $file_path_sql = "../media/images/".$file_name_new;
+                    $file_name_sql = "carousel".$photo_id;
+                
+                    // Update DB for getCarouselPhotos() to work
+                    $sql = "INSERT INTO photo (photo_id, photo_name, file_path, page_id, photo_date) VALUES ('$photo_id', '$file_name_sql', '$file_path_sql', 'index', 'today')";
+                    $stmt = $GLOBALS['pdo']->prepare($sql);
+                    $stmt->execute();
+
+                    // Success message
+                    header("Location: edit_carousel_photos.php?uploadsuccess");
+                } 
+                
+                else {
+                    echo "Failed to add to database";
+                }
             } 
             else {
                 echo "Your file is too large! 5mb max!";
