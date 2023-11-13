@@ -126,7 +126,7 @@ function getProjectNamesAndCovers() {
 }
 
 //Function for adding a new project to the project page
-function addNewProject(string $file_path, string $project_name, string $city, string $state, 
+function addNewProject(array $file_names, int $count, string $project_name, string $city, string $state, 
 string $date, string $project_description) {
 
     //Turns all the ids from the respective tables into integer values
@@ -145,16 +145,16 @@ string $date, string $project_description) {
     $stmtOne = $GLOBALS['pdo']->prepare($project_insert);
     $stmtOne->execute([$project_id_val, $project_name, $project_description, $city, $state]);
     
+    for($i = 0; $i < $count; $i++) {
+        $file_path = "../media/images/projects/" . $file_names[$i];
+        $photo_insert = "INSERT INTO photo(photo_id, photo_name, file_path, page_id, photo_date) VALUES(?, ?, ?, ?, ?)";
+        $stmtTwo = $GLOBALS['pdo']->prepare($photo_insert);
+        $stmtTwo->execute([$photo_id_val + $i, $file_names[$i], $file_path, "project_details", $date]);
 
-    $photo_insert = "INSERT INTO photo(photo_id, photo_name, file_path, page_id, photo_date) VALUES(?, ?, ?, ?, ?)";
-    $stmtTwo = $GLOBALS['pdo']->prepare($photo_insert);
-    $stmtTwo->execute([$photo_id_val, $project_name, $file_path, "project_details", $date]);
-
-
-
-    $project_photos_insert = "INSERT INTO project_photos(project_photo_id, photo_id, project_id, project_photo_order) VALUES(?, ?, ?, ?)";
-    $stmtThree = $GLOBALS['pdo']->prepare($project_photos_insert);
-    $stmtThree->execute([$project_photos_id_val, $photo_id_val, $project_id_val, 0]);
+        $project_photos_insert = "INSERT INTO project_photos(project_photo_id, photo_id, project_id, project_photo_order) VALUES(?, ?, ?, ?)";
+        $stmtThree = $GLOBALS['pdo']->prepare($project_photos_insert);
+        $stmtThree->execute([$project_photos_id_val + $i, $photo_id_val + $i, $project_id_val, $i]);
+    }
 }
 
 //Function for removing a project from the projects page.
