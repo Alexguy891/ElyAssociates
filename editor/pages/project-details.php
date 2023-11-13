@@ -5,6 +5,12 @@
 </head>
     <?php require 'support/header.php'; ?>
     <body>
+    <div style="text-align: right;">
+        <form method = "POST">
+            <input type="submit" name="removeBtn" value="REMOVE PROJECT" style="color: red; border-radius: 3px;" 
+            onclick="return confirm('Are you sure you want to remove this project? This cannot be undone.')">
+        </form>
+    </div>
     <div class='columnMain'>
         <div class='row m-5'>
             <?php
@@ -12,6 +18,24 @@
                 $project = getProjectFromId($projectId);
                 $projectImages = getProjectImagesFromId($projectId);
 
+                //Checks if remove project button is clicked. 
+                if(isset($_POST['removeBtn'])) {
+                    //print "Hello";
+                    //print $projectId;
+                    foreach($projectImages as $image) {
+                        //print $image['file_path'] . " ";
+                        unlink($image['file_path']);
+                    }
+
+                    //Function in config.php to remoce the project specified
+                    removeProject($projectId, $projectImages);
+
+                    //Sends user back to the projects page to see their work.
+                    echo "
+                    <script type='text/javascript'> 
+                         window.location.assign('projects.php')
+                    </script>";
+                }
                 echo "
                 <div class='row'>
                     <div class='col-lg-6'>
@@ -59,6 +83,7 @@
                 if ($i % 3 != 0) {
                     echo "</tr>";
                 }
+
                 ?>
                         </tbody>
                     </table>
