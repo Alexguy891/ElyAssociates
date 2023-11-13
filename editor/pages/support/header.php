@@ -3,6 +3,8 @@
     <div class="editor-buttons">
         <button class="reset-button" onclick="location.reload();">Reset</button>
         <button class="save-button" onclick="saveChanges();">Save Changes</button>
+        <br>
+        <a class="edit-carousel-photos-button" href='edit_carousel_photos.php'>Edit Carousel Photos</a>
     </div>
 </div>
 <header class="header sticky-top">
