@@ -9,7 +9,7 @@
         <?php require 'support/header.php'; ?>
         <div class="container mt-5" style="max-width: 500px;">
         <h1>Contact Us</h1>
-            <form>
+            <form method="post" name="contact_form" id="contact_form" onsubmit="sendMail(event)">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">

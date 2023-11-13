@@ -1,6 +1,10 @@
 let isSubmitting = false;
 
-function sendMail() {
+function sendMail(event) {
+    event.preventDefault();
+
+    console.log("Sending mail...");
+
     if (isSubmitting) {
         alert("Please wait before submitting again.");
         return;
@@ -9,20 +13,21 @@ function sendMail() {
     isSubmitting = true;
 
     let params = {
-        name: document.getElementById("name").value,
+        firstName: document.getElementById("firstName").value,
+        lastName: document.getElementById("lastName").value,
         email: document.getElementById("email").value,
-        phone_number: document.getElementById("phone_number").value,
+        phone: document.getElementById("phone").value,
         address: document.getElementById("address").value,
         city: document.getElementById("city").value, 
         state: document.getElementById("state").value,
-        zipcode: document.getElementById("zipcode").value,
-        description: document.getElementById("description").value
+        zip: document.getElementById("zip").value,
+        message: document.getElementById("message").value
     };
     const serviceID = "service_v6wevb7";
     const templateID = "template_0opaxzg";
 
-    if(params.name == "" || params.email == "" || params.phone_number == "" || params.address == "" || 
-    params.city == "" || params.state == "" || params.zipcode == "" || params.description == "") {
+    if(params.firstName == "" || params.lastName == "" || params.email == "" || params.phone == "" || params.address == "" || 
+    params.city == "" || params.state == "" || params.zip == "" || params.message == "") {
         alert("Form was not filled out properly!");
         return;
     }
@@ -30,14 +35,15 @@ function sendMail() {
     emailjs.send(serviceID, templateID, params)
     .then(
         res => {
-            document.getElementById("name").value = "";
+            document.getElementById("firstName").value = "";
+            document.getElementById("lastName").value = "";
             document.getElementById("email").value = "";
-            document.getElementById("phone_number").value = "";
+            document.getElementById("phone").value = "";
             document.getElementById("address").value = "";
             document.getElementById("city").value = "";
             document.getElementById("state").value = "Ohio";
-            document.getElementById("zipcode").value = "";
-            document.getElementById("description").value = "";
+            document.getElementById("zip").value = "";
+            document.getElementById("message").value = "";
             console.log(res);
             alert("Your message has been sent successfully!");
 
@@ -49,14 +55,4 @@ function sendMail() {
         console.log(err);
         isSubmitting = false;
     });
-}
-
-function changeForm() {
-    let choice1 = document.getElementById("radio_description");
-    let choice2 = document.getElementById("radio_inquiry");
-    if(choice1.checked) {
-        document.getElementById("description_legend").innerHTML = "Project Description:";
-    } else if(choice2.checked) {
-        document.getElementById("description_legend").innerHTML = "Customer Inquiry:";
-    }
 }
