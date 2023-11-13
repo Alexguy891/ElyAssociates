@@ -62,7 +62,7 @@
             <input type="date" id="date" name="date" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label for="img_upload">Upload Image:</label>
+            <label for="img_upload">Upload Images:</label>
             <input type="file" id="img_upload" name="img_upload[]" class="form-control" multiple accept="image/*" required>
         </div>
         <div class="mb-3">
@@ -72,7 +72,7 @@
         <div class="mb-3" style="text-align: center;">
             <a href="projects.php">
                 <input type = "submit" value= "Add Project!" name="submit" 
-                onclick="return confirm('Are you sure you want to add this project?')"/>
+                onclick="return confirm('Are you sure you want to add this project? Changes cannot be reverted!')"/>
             </a>
         </div>
     </form>
