@@ -14,6 +14,29 @@ catch(PDOException $error) {
     echo "Connection failed";
 }
 
+function recordResponse() {
+    $sql = "SELECT MAX(response_id) + 1 AS new_response_id FROM form_responses";
+    $stmt = $GLOBALS['pdo']->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetch();
+
+    // Access the result using an index
+    $new_response_id = $result[0];
+    if ($new_response_id == null) {
+        $new_response_id = 0;
+    }
+
+    $sql = "INSERT INTO form_responses (response_id, date) VALUES (:response_id, :date_column)";
+    $stmt = $GLOBALS['pdo']->prepare($sql);
+
+    // Bind values using named placeholders to avoid SQL injection
+    $stmt->bindValue(':response_id', $new_response_id, PDO::PARAM_INT);
+    $stmt->bindValue(':date_column', date("Y-m-d"), PDO::PARAM_STR);
+
+    $stmt->execute();
+    echo $stmt->queryString; // Add this line after $stmt->execute();
+}
+
 function getTextFromId(int $id) {
     $sql = "SELECT text_field FROM website_text WHERE text_id = :id";
     $stmt = $GLOBALS['pdo']->prepare($sql);

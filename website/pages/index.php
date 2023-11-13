@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php require 'support/head.php'; ?>
+<?php recordResponse();?>
 <title>Home</title>
 </head>
 <body>
