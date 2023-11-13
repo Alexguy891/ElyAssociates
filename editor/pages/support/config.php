@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+
 function saveText(string $text, int $id) {
     $sql = "UPDATE website_text SET text_field = :text WHERE text_id = :id";
     $stmt = $GLOBALS['pdo']->prepare($sql);
@@ -51,6 +52,14 @@ function getTextFromId(int $id) {
     return $result;
 }
 
+function getPhotoIDFromName(string $name) {
+    $sql = "SELECT photo_id FROM photo WHERE photo_name = :name";
+    $stmt = $GLOBALS['pdo']->prepare($sql);
+    $stmt->execute(['name' => $name]);
+    $result = $stmt->fetchAll();
+    return $result;
+}
+
 function getPhotoFromName(string $name) {
     $sql = "SELECT file_path FROM photo WHERE photo_name = :name";
     $stmt = $GLOBALS['pdo']->prepare($sql);
@@ -60,7 +69,7 @@ function getPhotoFromName(string $name) {
 }
 
 function getCarouselPhotos() {
-    $sql = "SELECT file_path FROM photo WHERE photo_name LIKE 'carousel%'";
+    $sql = "SELECT file_path, photo_id FROM photo WHERE photo_name LIKE 'carousel%'";
     $stmt = $GLOBALS['pdo']->prepare($sql);
     $stmt->execute();
     $result = $stmt->fetchAll();
