@@ -27,7 +27,7 @@
             const originalClass = element.className;
 
             // Create a contentEditable element to make the text editable
-            const editableElement = document.createElement('div');
+            const editableElement = document.createElement('span');
             editableElement.contentEditable = true;
             editableElement.innerHTML = element.textContent;
 

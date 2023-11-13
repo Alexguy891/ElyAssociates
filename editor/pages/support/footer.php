@@ -6,9 +6,9 @@
         </div>
         <div class="col-lg-4">
             <ul class="list-unstyled contact-info mb-4">
-            <li><i class="fas fa-envelope"></i> <?php echo getTextFromId(9)[0]['text_field']; ?></li>
-            <li><i class="fas fa-phone"></i> <?php echo getTextFromId(10)[0]['text_field']; ?></li>
-            <li><i class="fas fa-map-marker-alt"></i> <?php echo getTextFromId(11)[0]['text_field']; ?></li>
+            <li><i class="fas fa-envelope"></i> <span id='9' class='editable'><?php echo getTextFromId(9)[0]['text_field']; ?></span></li>
+            <li><i class="fas fa-phone"></i> <span id='10' class='editable'><?php echo getTextFromId(10)[0]['text_field']; ?></span></li>
+            <li><i class="fas fa-map-marker-alt"></i> <span id='11' class='editable'><?php echo getTextFromId(11)[0]['text_field']; ?></span></li>
             </ul>
         </div>
         <div class="col-lg-2 text-center">
