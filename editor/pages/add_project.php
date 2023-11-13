@@ -2,13 +2,17 @@
     require('support/head.php');
 
     if(isset($_POST["submit"])) {
-        //Moves picture added for project into the correct folder
-        $file_name = $_FILES['img_upload']['name'];
-        $file_tmp = $_FILES['img_upload']['tmp_name'];
-        move_uploaded_file($file_tmp, "../media/images/projects/" . $file_name);
+        //Moves pictures added for project into the correct folder
+        $file_names = $_FILES['img_upload']['name'];
+        $file_tmps = $_FILES['img_upload']['tmp_name'];
+        $count = count($file_names);
 
+        //For loop to go through each picture 
+        for($i = 0; $i < $count; $i++) {
+            move_uploaded_file($file_tmps[$i], "../media/images/projects/" . $file_names[$i]);
+        }
+        
         //Specifies variables needed to fill database such that project can be added properly
-        $file_path = "../media/images/projects/" . $file_name;
         $project_name = $_POST["project_name"];
         $city = $_POST["city"];
         $state = $_POST["state"];
@@ -16,13 +20,14 @@
         $project_description = $_POST["proj_description"];
 
         //Function in config.php to add the new project
-        addNewProject($file_path, $project_name, $city, $state, $date, $project_description);
+        addNewProject($file_names, $count, $project_name, $city, $state, $date, $project_description);
 
         //Sends user back to the projects page to see their work.
         echo "
             <script type='text/javascript'> 
                 window.location.assign('projects.php')
             </script>";
+        
 
     }
 
@@ -58,7 +63,7 @@
         </div>
         <div class="mb-3">
             <label for="img_upload">Upload Image:</label>
-            <input type="file" id="img_upload" name="img_upload" class="form-control" required>
+            <input type="file" id="img_upload" name="img_upload[]" class="form-control" multiple accept="image/*" required>
         </div>
         <div class="mb-3">
             <label for="proj_description" class="form-label">Project Description</label>
