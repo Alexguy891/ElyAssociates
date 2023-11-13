@@ -107,7 +107,7 @@ function getProjectNamesAndCovers() {
             <div class='container'>
                 <a href = 'project-details.php?id=".$project['project_id']."'>
                     <div class = 'image'>
-                        <img src='".$project['file_path']."' class='img-fluid'>
+                        <img src='".$project['file_path']."' class='img-fluid aspect-ratio-4x3'>
                         <div class = 'text'> <p>".$project['project_name']."</p> </div>
                     </div>
                 </a>

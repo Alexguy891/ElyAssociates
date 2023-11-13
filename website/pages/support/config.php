@@ -63,7 +63,7 @@ function getProjectImagesFromId(int $id) {
 }
 
 function getProjectNamesAndCovers() {
-    $sql = "SELECT p.project_id, p.project_name, h.file_path FROM projects p, photo h, project_photos r WHERE p.project_id = r.project_id AND h.photo_id = r.photo_id AND r.photo_id = 0";
+    $sql = "SELECT p.project_id, p.project_name, h.file_path FROM projects p, photo h, project_photos r WHERE p.project_id = r.project_id AND h.photo_id = r.photo_id AND r.project_photo_order = 0";
     $stmt = $GLOBALS['pdo']->prepare($sql);
     $stmt->execute();
     $projects = $stmt->fetchAll();;
@@ -78,7 +78,7 @@ function getProjectNamesAndCovers() {
             <div class='container'>
                 <a href = 'project-details.php?id=".$project['project_id']."'>
                     <div class = 'image'>
-                        <img src='".$project['file_path']."' class='img-fluid'>
+                        <img src='".$project['file_path']."' class='img-fluid aspect-ratio-4x3'>
                         <div class = 'text'> <p>".$project['project_name']."</p> </div>
                     </div>
                 </a>
