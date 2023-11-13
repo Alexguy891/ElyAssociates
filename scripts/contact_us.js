@@ -1,4 +1,13 @@
+let isSubmitting = false;
+
 function sendMail() {
+    if (isSubmitting) {
+        alert("Please wait before submitting again.");
+        return;
+    }
+
+    isSubmitting = true;
+
     let params = {
         name: document.getElementById("name").value,
         email: document.getElementById("email").value,
@@ -31,8 +40,15 @@ function sendMail() {
             document.getElementById("description").value = "";
             console.log(res);
             alert("Your message has been sent successfully!");
+
+            setTimeout(() => {
+                isSubmitting = false;
+            }, 10000);
         }
-    ).catch((err) => console.log(err));
+    ).catch((err) => {
+        console.log(err);
+        isSubmitting = false;
+    });
 }
 
 function changeForm() {
