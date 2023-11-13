@@ -5,10 +5,6 @@ if (isset($_POST['submit'])) {
     // Read in file
     $file = $_FILES['file'];
 
-    if (!isset($file[0])) {
-        echo "No file selected!";
-        header("Location: edit_carousel_photos.php?uploadcancelled");
-    }
 
     // Get file properties
     $file_name = $_FILES['file']['name'];
@@ -77,9 +73,13 @@ if (isset($_POST['submit'])) {
                     // Success message
                     header("Location: edit_carousel_photos.php?uploadsuccess");
                 } 
-                
                 else {
-                    echo "Failed to add to database";
+                    echo "
+                        <script type = 'text/javascript'>
+                        console.log('hit js');
+                        alert('Failed uploading image from server');
+                        window.location.assign('edit_carousel_photos.php');
+                        </script>";
                 }
             } 
             else {
@@ -94,5 +94,9 @@ if (isset($_POST['submit'])) {
         echo "You cannot upload files of this type, supported types are .jpg, .jpeg, and .png!";
     }
 } 
+else {
+    // Refresh Page with error messages
+    header("Location: edit_carousel_photos.php?uploadcancelled");
+}
 ?>
 

@@ -59,7 +59,11 @@ if (isset($_POST['delete_button'])) {
                 } 
             
                 else {
-                    echo "Failed to delete from database";
+                    echo "
+                    <script type = 'text/javascript'>
+                     alert('Failed deleting image from server');
+                    window.location.assign('edit_carousel_photos.php');
+                    </script>";
                 }
         }
     } else {
