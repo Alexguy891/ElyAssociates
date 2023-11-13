@@ -67,7 +67,7 @@
             editableElements.forEach(function(element) {
                 var data = {};
 
-                if (element.tagName === 'DIV') {
+                if (element.tagName === 'SPAN') {
                     // Handle editable <div> elements (text)
                     data.type = 'text'; // Set the type to 'text'
                     data.id = element.id;
