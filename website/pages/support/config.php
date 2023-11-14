@@ -34,7 +34,6 @@ function recordResponse() {
     $stmt->bindValue(':date_column', date("Y-m-d"), PDO::PARAM_STR);
 
     $stmt->execute();
-    echo $stmt->queryString; // Add this line after $stmt->execute();
 }
 
 function getTextFromId(int $id) {
