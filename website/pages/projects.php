@@ -6,7 +6,6 @@
     <?php require 'support/header.php'; ?>
 
 <body>
-    <!-- Table structure with Bootstrap grid system -->
     <div class="container mt-5">
         <table class="table">
             <tbody>

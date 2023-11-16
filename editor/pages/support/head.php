@@ -15,7 +15,6 @@
     <script>
         document.addEventListener('click', function(event) {
             if (event.target && event.target.classList.contains('editable')) {
-                // Check if the element is already in editing mode
                 if (event.target.getAttribute('contenteditable') !== 'true') {
                     makeEditable(event.target);
                 }
@@ -26,31 +25,23 @@
             const originalId = element.id;
             const originalClass = element.className;
 
-            // Create a contentEditable element to make the text editable
             const editableElement = document.createElement('span');
             editableElement.contentEditable = true;
             editableElement.innerHTML = element.textContent;
 
-            // Replace the clicked element with the editable element
             element.parentNode.replaceChild(editableElement, element);
             
-            // Restore the ID and class to the editable element
             editableElement.id = originalId;
             editableElement.className = originalClass;
 
-            // Add a click event listener to save changes
             editableElement.addEventListener('blur', function() {
-                // Update the original element with the edited content
                 element.textContent = editableElement.innerHTML;
                 
-                // Make the original element clickable again
                 element.setAttribute('onclick', 'makeEditable(this);');
             });
             
-            // Remove the click event from the editable element
             editableElement.removeAttribute('onclick');
             
-            // Focus on the editable element
             editableElement.focus();
         }
 
@@ -68,13 +59,11 @@
                 var data = {};
 
                 if (element.tagName === 'SPAN') {
-                    // Handle editable <div> elements (text)
-                    data.type = 'text'; // Set the type to 'text'
+                    data.type = 'text'; 
                     data.id = element.id;
                     data.content = element.textContent;
                 } else if (element.tagName === 'IMG' && element.classList.contains('editable')) {
-                    // Handle editable <img> elements (images)
-                    data.type = 'image'; // Set the type to 'image'
+                    data.type = 'image';
                     data.id = element.id;
                     data.src = element.src;
                 }
@@ -84,7 +73,6 @@
 
             console.log(modifiedData);
 
-            // Send both arrays to the server using Ajax
             $.ajax({
                 type: 'POST',
                 url: 'support/config.php',
@@ -140,17 +128,6 @@
         background-color: #7B8C6C;
     }
     
-    /* .container img {
-        transition: transform 0.3s;
-    } */
-
-   /* .container a:hover img, .enlarge:hover { */
-    /*    transform: scale(1.05); /* Increase the scale to slightly zoom in */ 
-   /*     filter: brightness(80%); /* Decrease brightness to darken the image */
-  /*  } */
-
-    /* Starting for text on hover */
-    
     .image {
         position: relative;
     }
@@ -181,20 +158,16 @@
         font-size: 30px;
     }
 
-    /* Ending for text on hover */
-
-    /* Start project-details page styling */
-
      .container__details img {
         transition: transform 0.3s;
     } 
 
     .container__details a:hover img, .enlarge:hover { 
-        transform: scale(1.05); /* Increase the scale to slightly zoom in */ 
-        filter: brightness(80%); /* Decrease brightness to darken the image */
+        transform: scale(1.05);
+        filter: brightness(80%);
     } 
 
-    .modal { /* For bigger image */
+    .modal {
         width: 100%;
         height: 100%;
         position: fixed;
@@ -231,5 +204,4 @@
     #mottos {
         white-space: pre;
     }
-    /* End project-details page styling */
 </style>

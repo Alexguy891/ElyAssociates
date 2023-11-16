@@ -1,7 +1,6 @@
 <?php
 $host = "localhost";
 $user = "root";
-// $pass = "eiML.f=6m688K7A0VH==;fl,Jo";
 $pass = "";
 $db = "website_data";
 global $pdo;
@@ -20,7 +19,6 @@ function recordResponse() {
     $stmt->execute();
     $result = $stmt->fetch();
 
-    // Access the result using an index
     $new_response_id = $result[0];
     if ($new_response_id == null) {
         $new_response_id = 0;
@@ -29,7 +27,6 @@ function recordResponse() {
     $sql = "INSERT INTO form_responses (response_id, date) VALUES (:response_id, :date_column)";
     $stmt = $GLOBALS['pdo']->prepare($sql);
 
-    // Bind values using named placeholders to avoid SQL injection
     $stmt->bindValue(':response_id', $new_response_id, PDO::PARAM_INT);
     $stmt->bindValue(':date_column', date("Y-m-d"), PDO::PARAM_STR);
 

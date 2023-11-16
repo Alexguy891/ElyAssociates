@@ -2,13 +2,11 @@
     require('support/head.php');
 
     if(isset($_POST["submit"])) {
-        //Moves pictures added for project into the correct folder
         $file_names = $_FILES['img_upload']['name'];
         $file_tmps = $_FILES['img_upload']['tmp_name'];
         $count = count($file_names);
         $isPhotosSubmitted = true;
 
-        //For loop to go through each picture 
         for($i = 0; $i < $count; $i++) {
             if(!move_uploaded_file($file_tmps[$i], "../media/images/projects/" . $file_names[$i])) {
                 $isPhotosSubmitted = false;
@@ -17,21 +15,18 @@
         }
         
         if($isPhotosSubmitted) {
-            //Specifies variables needed to fill database such that project can be added properly
             $project_name = $_POST["project_name"];
             $city = $_POST["city"];
             $state = $_POST["state"];
             $date = $_POST["date"];
             $project_description = $_POST["proj_description"];
 
-            //Function in config.php to add the new project
             addNewProject($file_names, $count, $project_name, $city, $state, $date, $project_description);
             echo "
             <script type='text/javascript'> 
                 window.location.assign('projects.php')
             </script>";
         } else {
-            //Sends user back to the projects page to see their work.
             echo "
                 <script type='text/javascript'> 
                     alert('The project did not save, images did not upload properly');

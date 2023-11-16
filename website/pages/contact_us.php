@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--HEAD-->
 <?php require 'support/head.php'; ?>
 <title>Contact Us</title>
 </head>
-    <!--BODY-->
     <body>
         <?php require 'support/header.php'; ?>
         <div class="container mt-5" style="max-width: 500px;">

@@ -53,17 +53,6 @@
         background-color: #7B8C6C;
     }
     
-    /* .container img {
-        transition: transform 0.3s;
-    } */
-
-   /* .container a:hover img, .enlarge:hover { */
-    /*    transform: scale(1.05); /* Increase the scale to slightly zoom in */ 
-   /*     filter: brightness(80%); /* Decrease brightness to darken the image */
-  /*  } */
-
-    /* Starting for text on hover */
-    
     .image {
         position: relative;
     }
@@ -94,20 +83,16 @@
         font-size: 30px;
     }
 
-    /* Ending for text on hover */
-
-    /* Start project-details page styling */
-
      .container__details img {
         transition: transform 0.3s;
     } 
 
     .container__details a:hover img, .enlarge:hover { 
-        transform: scale(1.05); /* Increase the scale to slightly zoom in */ 
-        filter: brightness(80%); /* Decrease brightness to darken the image */
+        transform: scale(1.05);
+        filter: brightness(80%);
     } 
 
-    .modal { /* For bigger image */
+    .modal {
         width: 100%;
         height: 100%;
         position: fixed;
@@ -144,5 +129,4 @@
     #mottos {
         white-space: pre;
     }
-    /* End project-details page styling */
 </style>

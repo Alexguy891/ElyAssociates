@@ -6,14 +6,12 @@
 <body>
     <?php require 'support/header.php'; ?>
     <div id='home-carousel' class='carousel slide' data-bs-ride='carousel'>
-        <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-bs-target="#home-carousel" data-bs-slide-to="0" class="active"></li>
             <li data-bs-target="#home-carousel" data-bs-slide-to="1"></li>
             <li data-bs-target="#home-carousel" data-bs-slide-to="2"></li>
         </ol>
 
-        <!-- Slides -->
         <div class="carousel-inner">
             <?php
                 $images = getCarouselPhotos();
@@ -26,7 +24,6 @@
             ?>
         </div>
 
-        <!-- Controls -->
         <a class="carousel-control-prev" href="#home-carousel" role="button" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>

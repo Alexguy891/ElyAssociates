@@ -1,7 +1,6 @@
 <?php
 $host = "localhost";
 $user = "root";
-// $pass = "eiML.f=6m688K7A0VH==;fl,Jo";
 $pass = "";
 $db = "website_data";
 global $pdo;
@@ -134,11 +133,9 @@ function getProjectNamesAndCovers() {
     }
 }
 
-//Function for adding a new project to the project page
 function addNewProject(array $file_names, int $count, string $project_name, string $city, string $state, 
 string $date, string $project_description) {
 
-    //Turns all the ids from the respective tables into integer values
     $project_id = $GLOBALS['pdo']->query("SELECT COUNT(*) FROM projects");
     $project_id_val = $project_id->fetchColumn();
     
@@ -148,7 +145,6 @@ string $date, string $project_description) {
     $project_photos_id = $GLOBALS['pdo']->query("SELECT COUNT(*) FROM project_photos");
     $project_photos_id_val = $project_photos_id->fetchColumn() + 1;
 
-    //Rest of code handles the inserts of data needed to add the project
     $project_insert = "INSERT INTO projects(project_id,project_name,project_description,project_city,project_state) 
     VALUES(?, ?, ?, ?, ?)";
     $stmtOne = $GLOBALS['pdo']->prepare($project_insert);
@@ -166,7 +162,6 @@ string $date, string $project_description) {
     }
 }
 
-//Function for removing a project from the projects page.
 function removeProject(int $id, array $projectImages) {
     $removeProjectPhotos = $GLOBALS['pdo']->query("DELETE FROM project_photos WHERE project_id='$id'");
     $removeProjects = $GLOBALS['pdo']->query("DELETE FROM projects WHERE project_id='$id'");
